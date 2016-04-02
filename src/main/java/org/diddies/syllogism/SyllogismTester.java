@@ -16,7 +16,6 @@ public class SyllogismTester {
     private static final String EXIT_STRING = "exit";
     private static final String ALL_VALID_STRING = "show valids";
 
-    // Enums
     private enum Fallacy {
         UM, IMa, IMi, EP, ACNP, EF
     };
@@ -46,7 +45,7 @@ public class SyllogismTester {
                     break CONSOLE;
                 // Show all syllogisms that are valid
                 case ALL_VALID_STRING:
-		    // Note that this is well known, and calculating it each time
+                    // Note that this is well known, and calculating it each time
                     // isn't necessary, but rather done to prove the functionality
                     // of the program
                     List<Syllogism> allSyllogisms = generateSyllogisms();
