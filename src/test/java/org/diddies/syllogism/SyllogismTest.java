@@ -7,17 +7,27 @@ import org.junit.Test;
 public class SyllogismTest {
 
     private static final Syllogism SYLLOGISM_AAA1 = Syllogism.parseSyllogism("AAA-1");
+    private static final Syllogism SYLLOGISM_AEA1 = Syllogism.parseSyllogism("AEA-1");
     private static final Syllogism SYLLOGISM_AAI2 = Syllogism.parseSyllogism("AAI-2");
     private static final Syllogism SYLLOGISM_AIE4 = Syllogism.parseSyllogism("AIE-4");
     private static final Syllogism SYLLOGISM_AIO1 = Syllogism.parseSyllogism("AIO-1");
     private static final Syllogism SYLLOGISM_AOA2 = Syllogism.parseSyllogism("AOA-2");
     private static final Syllogism SYLLOGISM_AOE2 = Syllogism.parseSyllogism("AOE-2");
+    private static final Syllogism SYLLOGISM_EAA1 = Syllogism.parseSyllogism("EAA-1");
     private static final Syllogism SYLLOGISM_IEO1 = Syllogism.parseSyllogism("IEO-1");
     private static final Syllogism SYLLOGISM_IIO3 = Syllogism.parseSyllogism("IIO-3");
+    private static final Syllogism SYLLOGISM_OAA1 = Syllogism.parseSyllogism("OAA-1");
+    private static final Syllogism SYLLOGISM_OAA3 = Syllogism.parseSyllogism("OAA-3");
+    private static final Syllogism SYLLOGISM_OAE2 = Syllogism.parseSyllogism("OAE-2");
+    private static final Syllogism SYLLOGISM_OOO1 = Syllogism.parseSyllogism("OOO-1");
+    private static final Syllogism SYLLOGISM_OOO4 = Syllogism.parseSyllogism("OOO-4");
 
     @Test
     public void testParseSyllogism() {
-        fail("The test case is a prototype.");
+        String form = "aaa-1";
+        Syllogism syll = Syllogism.parseSyllogism(form);
+        assertEquals("The figure was parsed correctly", 1, syll.getFigure());
+        assertEquals("The toString should return the input in all caps", form.toUpperCase(), syll.toString());
     }
 
     @Test
@@ -45,22 +55,32 @@ public class SyllogismTest {
 
     @Test
     public void testHasDistributedMiddle() {
-        fail("The test case is a prototype.");
+        assertTrue("EAA-1 is distributed on the major premise", SYLLOGISM_EAA1.hasDistributedMiddle());
+        assertTrue("AEA-1 is distributed on the minor premise", SYLLOGISM_AEA1.hasDistributedMiddle());
+        assertFalse("AIO-1 is not distributed", SYLLOGISM_AIO1.hasDistributedMiddle());
     }
 
     @Test
     public void testCommitsIllicitMajor() {
-        fail("The test case is a prototype.");
+        // TODO relearn the rules of syllogisms and better document the distributions
+        assertFalse("AAI-2 does not commit this because it has a positive conclusion (see distributions)", SYLLOGISM_AAI2.commitsIllicitMajor());
+        assertFalse("OOO-4 does not commit this (see distributions)", SYLLOGISM_OOO4.commitsIllicitMajor());
+        assertTrue("OOO-1 does commit this (see distributions)", SYLLOGISM_OOO1.commitsIllicitMajor());
     }
 
     @Test
     public void testHasExclusivePremises() {
-        fail("The test case is a prototype.");
+        assertFalse("IEO-1 does not commit this because it has a positive major premise", SYLLOGISM_IEO1.hasExclusivePremises());
+        assertFalse("OAE-2 does not commit this because it has a positive minor premise", SYLLOGISM_OAE2.hasExclusivePremises());
+        assertTrue("OOO-4 does commit this because it has no positive premise", SYLLOGISM_OOO4.hasExclusivePremises());
     }
 
     @Test
     public void testCommitsIllicitMinor() {
-        fail("The test case is a prototype.");
+        // TODO relearn the rules of syllogisms and better document the distributions
+        assertFalse("AAI-2 does not commit this because it has an existential conclusion (see distributions)", SYLLOGISM_AAI2.commitsIllicitMinor());
+        assertFalse("OAA-3 does not commit this (see distributions)", SYLLOGISM_OAA3.commitsIllicitMinor());
+        assertTrue("OAA-1 does commit this (see distributions)", SYLLOGISM_OAA1.commitsIllicitMinor());
     }
 
     @Test
