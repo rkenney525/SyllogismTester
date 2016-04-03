@@ -18,18 +18,18 @@ import java.util.Comparator;
  */
 public class Syllogism {
 
-    // Attribute
+    // Attributes
     private String mood;
     private int figure;
     private int majorIndex;
     private int minorIndex;
     private boolean[][] distribution;
+    
     // Constants
     private final int MAJOR_PREMISE = 0;
     private final int MINOR_PREMISE = 1;
     private final int CONCLUSION = 2;
 
-    // Constructor
     /**
      * Create a syllogism of the specified mood and figure.
      *
@@ -65,7 +65,7 @@ public class Syllogism {
             }
         }
 
-	// Major and minor indices
+        // Major and minor indices
         // This could be condensed, but this is more intuitive
         switch (figure) {
             case 1:
@@ -87,7 +87,6 @@ public class Syllogism {
         }
     }
 
-    // Methods
     /**
      * Create a Syllogism object out of a String representation.
      *
